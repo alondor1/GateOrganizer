@@ -1,0 +1,30 @@
+.LoginBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -100px;
+  background-color: rgb(154, 154, 154);
+  text-align: center;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.logintext {
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.login {
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.login:hover {
+  background-color: rgba(0, 0, 0, 0.226);
+}
+
+.LoginBox span {
+  color: red;
+}

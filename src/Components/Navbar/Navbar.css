@@ -1,0 +1,104 @@
+body {
+  background-color: rgb(227, 227, 227);
+}
+
+.navbar {
+  background-color: rgb(188, 185, 185);
+  display: flex;
+  border-radius: 10px;
+  border: 1px black solid;
+  z-index: 0;
+}
+
+.menu-icon {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.menu-icon:hover {
+  cursor: pointer;
+  background-color: rgb(114, 114, 114);
+  transition: background-color 0.7s;
+  border-radius: 10px;
+}
+.logo {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.down-menu {
+  position: fixed;
+  margin-top: 46px;
+  background-color: rgb(196, 196, 196);
+  z-index: 1;
+  padding: 5px;
+  text-align: center;
+  border: 1px black solid;
+}
+
+.down-menu ul {
+  align-items: center;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.down-menu ul li {
+  font-size: 25px;
+  padding: 20px;
+  list-style: none;
+}
+
+.down-menu ul li :link {
+  text-decoration: none;
+  background-color: rgb(149, 175, 176);
+  border-radius: 7px;
+}
+
+.down-menu ul li :visited {
+  color: black;
+}
+
+.down-menu ul li :hover {
+  background-color: rgb(176, 133, 133);
+  border-radius: 7px;
+}
+.down-menu ul li :active {
+  background-color: rgb(133, 176, 133);
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.down-menu img:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.5s;
+  background-color: rgb(196, 118, 118);
+}
+
+.sign-out {
+  color: black;
+  border-radius: 10px;
+  background-color: rgb(239, 236, 236);
+}
+
+.sign-out:hover {
+  cursor: pointer;
+  background-color: rgb(114, 114, 114);
+  transition: background-color 0.7s;
+}
+.role-holder p {
+  background-color: rgba(99, 236, 227, 0.224);
+  margin: 1px;
+  margin-left: 1px;
+  font-size: 10px;
+}
+.role-holder h4 {
+  margin: 5px;
+}
+.role-holder {
+  text-align: center;
+  background-color: rgb(169, 169, 169);
+}

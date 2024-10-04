@@ -3,14 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { EnterForm } from "./Pages/EnterForm";
 import { EnterLog } from "./Pages/EnterLog";
 import { Homepage } from "./Pages/homepage";
 import { ContactUs } from "./Pages/ContactUs";
+import { SiteManager } from "./Pages/SiteManager";
 import { AuthProvider } from "./Context/AuthContext";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
     element: (
       <AuthProvider>
         <Homepage />
+      </AuthProvider>
+    ),
+  },
+  {
+    path: "/SiteManager",
+    element: (
+      <AuthProvider>
+        <SiteManager />
       </AuthProvider>
     ),
   },

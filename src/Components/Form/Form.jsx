@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Form.css";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const Form = () => {
+  const { userName } = useContext(AuthContext);
   const [values, setValues] = useState({
     name: "",
     phone: "",
     accesstype: "",
     arrivaldate: "",
     arrivaltime: "",
+    approver: userName,
+    status: "scheduled",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3004/history/", values)
+      .post("http://localhost:3004/getHistories", values)
+      .then((res) => {})
       .catch((err) => console.log(err));
     axios
-      .post("http://localhost:3004/entrys", values)
+      .post("http://localhost:3004/getEntrys", values)
       .then((res) => {
         console.log(res);
         alert("sent !");
@@ -63,6 +68,11 @@ export const Form = () => {
           <option value="visitor">visitor</option>
           <option value="RF">RF</option>
           <option value="bezeq">bezeq</option>
+          <option value="space">חלל</option>
+          <option value="יהודה">יהודה</option>
+          <option value="yes">yes</option>
+          <option value="OU">OU</option>
+          <option value="playout">playout</option>
         </select>
 
         <br />
@@ -89,7 +99,7 @@ export const Form = () => {
         />
         <br />
         <br />
-        <input type="submit" />
+        <button type="submit">schedule</button>
         <br />
         <br />
       </form>

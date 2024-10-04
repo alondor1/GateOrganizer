@@ -8,12 +8,22 @@ import addicon from "../Assets/addicon.png";
 import bookicon from "../Assets/bookicon.png";
 import phoneicon from "../Assets/phoneicon.png";
 import homepageicon from "../Assets/homepageicon.png";
+import { Clock } from "../Clock/Clock";
 import { AuthContext } from "../../Context/AuthContext";
 import signout from "../Assets/signout.png";
 
 export const Navbar = () => {
   const [isOpen, SetIsOpen] = useState(true);
+
   const { setIsLoggedIn, accessKey, userName } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    sessionStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("userName");
+    sessionStorage.removeItem("accessKey");
+  };
+
   return (
     <div className="navbar">
       <div className="menu-icon" onClick={() => SetIsOpen((prev) => !prev)}>
@@ -62,11 +72,19 @@ export const Navbar = () => {
         <div></div>
       )}
       <img src={logo} alt="" className="logo" />
+      {accessKey === "admin" ? (
+        <Link to="/SiteManager">
+          <button>user mangement</button>
+        </Link>
+      ) : (
+        ""
+      )}
+      <Clock />
       <div className="role-holder">
         <h4>{userName}</h4>
         <p>{accessKey}</p>
       </div>
-      <button className="sign-out" onClick={() => setIsLoggedIn(false)}>
+      <button className="sign-out" onClick={() => handleLogout()}>
         <img src={signout} alt="" />
       </button>
     </div>

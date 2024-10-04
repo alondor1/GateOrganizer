@@ -11,30 +11,30 @@ export const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const saved = localStorage.getItem("isLoggedIn");
+    const saved = sessionStorage.getItem("isLoggedIn");
     return saved === "true";
   });
 
   const [userName, setUserName] = useState(() => {
-    const saved = localStorage.getItem("userName");
+    const saved = sessionStorage.getItem("userName");
     return saved;
   });
 
   const [accessKey, setAccessKey] = useState(() => {
-    const saved = localStorage.getItem("accessKey");
+    const saved = sessionStorage.getItem("accessKey");
     return saved;
   });
 
   useEffect(() => {
-    localStorage.setItem("isLoggedIn", isLoggedIn);
+    sessionStorage.setItem("isLoggedIn", isLoggedIn);
   }, [isLoggedIn]);
 
   useEffect(() => {
-    localStorage.setItem("userName", userName);
+    sessionStorage.setItem("userName", userName);
   }, [userName]);
 
   useEffect(() => {
-    localStorage.setItem("accessKey", accessKey);
+    sessionStorage.setItem("accessKey", accessKey);
   }, [accessKey]);
 
   return (

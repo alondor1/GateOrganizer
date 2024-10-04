@@ -1,0 +1,27 @@
+.manage-box {
+  display: flex; /* Enable flexbox layout */
+  align-items: stretch; /* Ensure child elements stretch to the same height */
+  width: 100%;
+}
+
+.user-table {
+  display: flex; /* Add this to enable flexbox layout */
+  justify-content: space-between; /* No quotes */
+  align-items: flex; /* No quotes */
+  width: 100%;
+  flex: 1;
+}
+
+.user-form {
+  display: inline-block; /* This is fine */
+  vertical-align: top; /* This is fine */
+  width: 300px; /* This is fine */
+}
+
+.user-form button {
+  margin-left: 50px;
+  border-radius: 15px;
+}
+.user-form button:hover {
+  cursor: pointer;
+}

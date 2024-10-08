@@ -1,9 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./LoginBox.css";
-import axios from "axios";
+import axiosInstance from "../../axiosConfig";
 import loginimg from "../Assets/loginimg.png";
 import { AuthContext } from "../../Context/AuthContext";
 import { Navigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LoginBox = () => {
   const [loginData, setLoginData] = useState({
@@ -13,30 +15,43 @@ export const LoginBox = () => {
 
   const { isLoggedIn, setIsLoggedIn, setUserName, setAccessKey } =
     useContext(AuthContext);
-  const [error, setError] = useState("");
+
+  const [redirect, setRedirect] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3004/login",
-        loginData
-      );
+      const response = await axiosInstance.post("/login", loginData);
 
       // If successful, set user data
+
       const user = response.data;
       setIsLoggedIn(true);
       setUserName(`${user.firstname} ${user.lastname}`);
       setAccessKey(user.accesskey);
     } catch (err) {
-      setError("Invalid email or password");
+      toast.error("Invalid email or password");
     }
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      toast.success("Login successful!");
+      const timer = setTimeout(() => {
+        setRedirect(true); // Set redirect to true after 2 seconds
+      }, 2000); // Adjust the duration as needed
+
+      return () => clearTimeout(timer); // Cleanup the timer on component unmount
+    }
+  }, [isLoggedIn]);
+
+  if (redirect) {
+    return <Navigate to="/homepage" />; // Change to your desired route
+  }
+
   return (
     <div className="LoginBox">
-      {isLoggedIn ? <Navigate to="/homepage" /> : ""}
       <form onSubmit={handleLogin}>
         <img src={loginimg} alt="" />
         <h2>Login</h2>
@@ -63,7 +78,12 @@ export const LoginBox = () => {
         <br />
         <input type="submit" value="Log In" className="login" />
       </form>
-      <span>{error}</span>
+      <ToastContainer
+        position={"top-center"}
+        closeOnClick={true}
+        pauseOnHover={false}
+        autoClose={false}
+      />
     </div>
   );
 };

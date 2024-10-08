@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./ManageBox.css";
-import axios from "axios";
+import axiosInstance from "../../axiosConfig";
 import DataTable from "react-data-table-component";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ManageBox = () => {
   const [data, setData] = useState([]);
@@ -15,8 +17,8 @@ export const ManageBox = () => {
   });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3004/getUsers")
+    axiosInstance
+      .get("/getUsers")
       .then((res) => {
         setData(res.data);
       })
@@ -52,7 +54,7 @@ export const ManageBox = () => {
     {
       name: "",
       selector: (row) => (
-        <button onClick={(e) => handleDelete(row._id)}>delete</button>
+        <button onClick={(e) => handleDelete(row._id)}>delete user</button>
       ),
       sortable: true,
     },
@@ -60,12 +62,15 @@ export const ManageBox = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:3004/getUsers", values)
+    axiosInstance
+      .post("/getUsers", values)
       .then((res) => {
         console.log(res);
-        alert("The user has successfully registered !");
-        window.location.reload();
+        toast.success("user successfully registered");
+        const timer = setTimeout(() => {
+          window.location.reload(); // Set redirect to true after 2 seconds
+        }, 5500);
+        return () => clearTimeout(timer);
       })
       .catch((err) => console.log(err));
   };
@@ -75,10 +80,14 @@ export const ManageBox = () => {
       "this action is irreversible , are you sure"
     );
     if (confirm) {
-      axios
-        .delete(`http://localhost:3004/getUsers/${id}`)
+      axiosInstance
+        .delete(`/getUsers/${id}`)
         .then((res) => {
-          window.location.reload();
+          toast.success("user successfully deleted");
+          const timer = setTimeout(() => {
+            window.location.reload(); // Set redirect to true after 2 seconds
+          }, 5500);
+          return () => clearTimeout(timer);
         })
         .catch((err) => console.log(err));
     }
@@ -165,6 +174,7 @@ export const ManageBox = () => {
         <div className="user-table">
           <DataTable data={data} columns={columns}></DataTable>
         </div>
+        <ToastContainer position={"top-center"} />
       </div>
     </div>
   );

@@ -1,104 +1,148 @@
 body {
   background-color: rgb(227, 227, 227);
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .navbar {
   background-color: rgb(188, 185, 185);
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 10px;
-  border: 1px black solid;
-  z-index: 0;
+  border: 1px solid black;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .menu-icon {
-  margin-top: auto;
-  margin-bottom: auto;
+  cursor: pointer;
+  margin-right: auto; /* Push the logo to the center */
 }
 
 .menu-icon:hover {
   cursor: pointer;
-  background-color: rgb(114, 114, 114);
-  transition: background-color 0.7s;
-  border-radius: 10px;
+  background-color: rgb(114, 114, 114); /* Darken the background */
+  border-radius: 10px; /* Keep rounded corners */
+  transform: scale(1.1); /* Slightly increase size */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
 }
+
 .logo {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+  height: 30px; /* Reduced logo size for a thinner appearance */
+  margin: 0 auto; /* Center the logo */
 }
 
 .down-menu {
-  position: fixed;
-  margin-top: 46px;
+  position: absolute;
+  top: 45px; /* Adjust according to your navbar height */
+  left: 0; /* Align to the left */
   background-color: rgb(196, 196, 196);
   z-index: 1;
-  padding: 5px;
-  text-align: center;
-  border: 1px black solid;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 200px; /* Set a width for the dropdown menu */
 }
 
 .down-menu ul {
-  align-items: center;
-  text-align: center;
-  padding-left: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .down-menu ul li {
-  font-size: 25px;
-  padding: 20px;
-  list-style: none;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
-.down-menu ul li :link {
+.down-menu ul li a {
   text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  border-radius: 7px;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%; /* Make links take full width */
+}
+
+.down-menu ul li a:hover {
   background-color: rgb(149, 175, 176);
-  border-radius: 7px;
+  /* Remove transform to prevent overflow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for effect */
 }
 
-.down-menu ul li :visited {
-  color: black;
-}
-
-.down-menu ul li :hover {
-  background-color: rgb(176, 133, 133);
-  border-radius: 7px;
-}
-.down-menu ul li :active {
-  background-color: rgb(133, 176, 133);
-  border-radius: 10px;
-  transition: 0.5s;
-}
-
-.down-menu img:hover {
+/* Center the close icon */
+.close-icon {
   cursor: pointer;
-  border-radius: 10px;
-  transition: 0.5s;
-  background-color: rgb(196, 118, 118);
+  margin: 10px auto; /* Center the close icon */
+  width: 20px; /* Adjust size */
+  height: 20px; /* Adjust size */
+  display: block; /* Ensure it's a block-level element */
 }
 
-.sign-out {
-  color: black;
-  border-radius: 10px;
+.close-icon:hover {
+  background-color: rgba(
+    176,
+    133,
+    133,
+    0.8
+  ); /* Light background color on hover */
+  transform: scale(1.1); /* Slightly increase size on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  transition: border-radius 0.5s;
+  border-radius: 15px;
+}
+
+.user-management-button {
+  padding: 5px 10px; /* Thinner button */
   background-color: rgb(239, 236, 236);
+  border-radius: 10px;
+  border: none;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.sign-out:hover {
-  cursor: pointer;
+.user-management-button:hover {
   background-color: rgb(114, 114, 114);
-  transition: background-color 0.7s;
+  color: white;
 }
+
+.role-holder {
+  text-align: center;
+  background-color: rgb(169, 169, 169);
+  border-radius: 10px;
+}
+
+.role-holder h4 {
+  margin: 5px;
+}
+
 .role-holder p {
   background-color: rgba(99, 236, 227, 0.224);
   margin: 1px;
   margin-left: 1px;
-  font-size: 10px;
+  font-size: 10px; /* Retained original font size */
 }
-.role-holder h4 {
-  margin: 5px;
+.sign-out {
+  color: black;
+  border-radius: 10px;
+  background-color: rgb(239, 236, 236);
+  padding: 5px 10px; /* Added padding for a better appearance */
+  border: none; /* Remove border for a cleaner look */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
 }
-.role-holder {
-  text-align: center;
-  background-color: rgb(169, 169, 169);
+
+.sign-out:hover {
+  cursor: pointer;
+  background-color: rgb(176, 133, 133); /* Darker background on hover */
+  color: white; /* Change text color on hover */
+  transform: scale(1.05); /* Slightly increase size */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
 }

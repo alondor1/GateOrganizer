@@ -1,67 +1,108 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
+import axiosInstance from "../../axiosConfig";
 import "./EnterTable.css";
 import DataTable from "react-data-table-component";
 import { customStyles } from "./TableStyle.jsx";
 import { Clock } from "../Clock/Clock";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const GuestInfoModal = ({ guests, isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal">
+        <button onClick={onClose}>x</button>
+        <h2>Guests Information</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {guests.map((guest) => (
+              <tr key={guest.id}>
+                <td>{guest.id}</td>
+                <td>{guest.fullName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export const EnterTable = () => {
+  const [selectedGuests, setSelectedGuests] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const [records, setRecords] = useState([]);
   const dataTableRef = useRef(null);
   const isFullScreen = false;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3004/getEntrys")
-      .then((res) => {
-        setData(res.data);
-        setRecords(res.data);
-      })
-      .catch((err) => console.log(err));
+    fetchData(); // Fetch data on component mount
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const res = await axiosInstance.get(`/getEntrys`);
+      setData(res.data);
+      setRecords(res.data);
+      toast.success("Data successfully refreshed!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Error fetching data");
+    }
+  };
 
   const handleConfirm = async (id, status) => {
     const newRecords = [...records];
     const indexToUpdate = newRecords.findIndex((record) => record._id === id);
-    if (indexToUpdate === -1) return; // Early return if the record isn't found
+    if (indexToUpdate === -1) return;
 
     const originalRecord = { ...newRecords[indexToUpdate] };
 
-    // Optimistically update the UI
     if (status === "scheduled") {
       newRecords[indexToUpdate].status = "in-site";
       setRecords(newRecords);
       try {
-        await axios.put(`http://localhost:3004/getEntrys/${id}`, {
+        await axiosInstance.put(`/getEntrys/${id}`, {
           status: "in-site",
         });
+        toast.success(`Successfully updated status to "in-site"`);
       } catch (err) {
-        // Handle error, revert status if necessary
         newRecords[indexToUpdate].status = "scheduled";
         setRecords(newRecords);
+        toast.error(`Error updating status to "in-site"`);
       }
     } else if (status === "in-site") {
       newRecords[indexToUpdate].status = "left";
       setRecords(newRecords);
       try {
-        await axios.put(`http://localhost:3004/getEntrys/${id}`, {
+        await axiosInstance.put(`/getEntrys/${id}`, {
           status: "left",
         });
+        toast.success(`Successfully updated status to "left"`);
       } catch (err) {
-        // Handle error
         newRecords[indexToUpdate].status = "in-site";
         setRecords(newRecords);
+        toast.error(`Error updating status to "left"`);
       }
     } else if (status === "left") {
       newRecords.splice(indexToUpdate, 1);
       setRecords(newRecords);
       try {
-        await axios.delete(`http://localhost:3004/getEntrys/${id}`);
+        await axiosInstance.delete(`/getEntrys/${id}`);
+        toast.success(`Successfully removed record`);
       } catch (err) {
-        // Handle error, revert changes
-        newRecords.splice(indexToUpdate, 0, { ...originalRecord }); // Assume you have a way to restore
+        newRecords.splice(indexToUpdate, 0, { ...originalRecord });
         setRecords(newRecords);
+        toast.error(`Error removing record`);
       }
     }
   };
@@ -91,51 +132,53 @@ export const EnterTable = () => {
     }
   };
 
+  const refreshDataTable = () => {
+    fetchData(); // Just call the fetch data function
+  };
+
+  const handleGuestClick = (guests) => {
+    setSelectedGuests(guests);
+    setModalOpen(true);
+  };
+
   const columns = [
+    { name: "Contact", selector: (row) => row.name, sortable: true },
     {
-      name: "contact",
-      selector: (row) => row.name,
+      name: "Guests",
+      cell: (row) => (
+        <button onClick={() => handleGuestClick(row.guests)}>
+          {"Info Here"}
+        </button>
+      ),
       sortable: true,
     },
+    { name: "Phone", selector: (row) => row.phone, sortable: true },
+    { name: "Access Type", selector: (row) => row.accesstype, sortable: true },
     {
-      name: "phone",
-      selector: (row) => row.phone,
-      sortable: true,
-    },
-    {
-      name: "access type",
-      selector: (row) => row.accesstype,
-      sortable: true,
-    },
-    {
-      name: "arrival date",
+      name: "Arrival Date",
       selector: (row) => row.arrivaldate,
       sortable: true,
     },
     {
-      name: "arrival time",
+      name: "Arrival Time",
       selector: (row) => row.arrivaltime,
       sortable: true,
     },
+    { name: "Approved By", selector: (row) => row.approver, sortable: true },
     {
-      name: "Approved by",
-      selector: (row) => row.approver,
-      sortable: true,
-    },
-    {
-      name: "status",
+      name: "Status",
       selector: (row) => <div className={row.status}>{row.status}</div>,
       sortable: true,
     },
     {
-      name: "",
+      name: <button onClick={refreshDataTable}>Refresh</button>,
       selector: (row) => (
         <div>
           <button
             className="confirm-button"
-            onClick={(e) => handleConfirm(row._id, row.status)}
+            onClick={() => handleConfirm(row._id, row.status)}
           >
-            click to check
+            Click to Check
           </button>
         </div>
       ),
@@ -144,8 +187,7 @@ export const EnterTable = () => {
 
   return (
     <div>
-      <h2>attending</h2>
-
+      <h2>Security Side Interface</h2>
       <div
         ref={dataTableRef}
         className={`enter-table ${isFullScreen ? "full-screen" : ""}`}
@@ -154,18 +196,30 @@ export const EnterTable = () => {
         <input
           className="table-search"
           type="text"
-          placeholder="search...."
+          placeholder="Search...."
           onChange={handleFilter}
         />
         <button className="full-button" onClick={toggleFullScreen}>
           {isFullScreen ? "Exit Full Screen" : "Full Screen"}
         </button>
+
         <DataTable
           data={records}
           columns={columns}
           pagination
           paginationPerPage={7}
           customStyles={customStyles()}
+        />
+        <ToastContainer
+          position={"bottom-right"}
+          closeOnClick={true}
+          pauseOnHover={false}
+          autoClose={1000}
+        />
+        <GuestInfoModal
+          guests={selectedGuests}
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
         />
       </div>
       <br />

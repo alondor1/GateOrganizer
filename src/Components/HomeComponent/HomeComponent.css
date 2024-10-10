@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif; /* Using a modern font */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ffffff; /* White text color for contrast */
+  margin-top: -200px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: black;
+  font: bolder;
+  text-align: center;
+}
+
+.link {
+  display: block;
+  padding: 15px 30px;
+  margin: 10px 0;
+  text-decoration: none;
+  border-radius: 25px; /* Rounded corners for buttons */
+  background: rgba(0, 123, 255, 0.8); /* Semi-transparent blue */
+  color: white;
+  font-size: 1.5rem;
+  transition: background-color 0.3s, transform 0.2s; /* Adding a transform effect */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for button effect */
+}
+
+.link:hover {
+  background: rgba(0, 123, 255, 1); /* Solid blue on hover */
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.title img {
+  margin: 10px 0;
+  height: 50px;
+}

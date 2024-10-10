@@ -30,7 +30,7 @@ body {
 }
 
 .logo {
-  height: 30px; /* Reduced logo size for a thinner appearance */
+  height: 35px; /* Reduced logo size for a thinner appearance */
   margin: 0 auto; /* Center the logo */
 }
 
@@ -145,4 +145,64 @@ body {
   color: white; /* Change text color on hover */
   transform: scale(1.05); /* Slightly increase size */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row; /* Stack items vertically */
+    padding: 10px;
+  }
+
+  .menu-icon {
+    cursor: pointer; /* Ensure pointer on hover */
+  }
+
+  .logo {
+    height: 25px; /* Adjust logo size for mobile */
+    margin: 0 auto; /* Center the logo */
+  }
+
+  .down-menu {
+    width: 75%; /* Full width for mobile */
+    left: 0; /* Align to the left */
+    padding: 10px; /* Add padding for better spacing */
+    margin-top: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+
+  .down-menu ul {
+    padding: 0; /* Reset padding */
+    margin: 0; /* Reset margin */
+    width: 100%; /* Ensure full width */
+  }
+
+  .down-menu ul li {
+    font-size: 24px; /* Slightly smaller font */
+    margin: 8px 0; /* Add some space between items */
+  }
+
+  .down-menu ul li a {
+    padding: 10px; /* Increase padding for touch targets */
+    border-radius: 7px; /* Rounded corners for links */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+
+  .down-menu ul li a:hover {
+    background-color: rgb(149, 175, 176); /* Highlight on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+  }
+
+  .close-icon {
+    margin: 10px auto; /* Center the close icon */
+    width: 25px; /* Adjust size */
+    height: 25px; /* Adjust size */
+  }
+
+  .role-holder {
+    font-size: 14px; /* Smaller text for mobile */
+  }
+
+  .sign-out {
+    font-size: 14px; /* Smaller font size */
+  }
 }

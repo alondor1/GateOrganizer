@@ -8,7 +8,6 @@ import addicon from "../Assets/addicon.png";
 import bookicon from "../Assets/bookicon.png";
 import phoneicon from "../Assets/phoneicon.png";
 import homepageicon from "../Assets/homepageicon.png";
-import { Clock } from "../Clock/Clock";
 import { AuthContext } from "../../Context/AuthContext";
 import signout from "../Assets/signout.png";
 import { ToastContainer, toast } from "react-toastify";
@@ -91,11 +90,9 @@ export const Navbar = () => {
 
       {accessKey === "admin" && (
         <Link to="/SiteManager">
-          <button className="user-management-button">Site Management</button>
+          <button className="user-management-button">Site management</button>
         </Link>
       )}
-
-      <Clock />
 
       <div className="role-holder">
         <h4>{userName}</h4>

@@ -171,7 +171,7 @@ export const EnterTable = () => {
       sortable: true,
     },
     {
-      name: <button onClick={refreshDataTable}>Refresh</button>,
+      name: "",
       selector: (row) => (
         <div>
           <button
@@ -188,6 +188,7 @@ export const EnterTable = () => {
   return (
     <div>
       <h2>Security Side Interface</h2>
+
       <div
         ref={dataTableRef}
         className={`enter-table ${isFullScreen ? "full-screen" : ""}`}
@@ -202,7 +203,7 @@ export const EnterTable = () => {
         <button className="full-button" onClick={toggleFullScreen}>
           {isFullScreen ? "Exit Full Screen" : "Full Screen"}
         </button>
-
+        <button onClick={refreshDataTable}>Refresh</button>
         <DataTable
           data={records}
           columns={columns}
@@ -214,7 +215,7 @@ export const EnterTable = () => {
           position={"bottom-right"}
           closeOnClick={true}
           pauseOnHover={false}
-          autoClose={1000}
+          autoClose={700}
         />
         <GuestInfoModal
           guests={selectedGuests}

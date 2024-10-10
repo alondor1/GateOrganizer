@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Navbar } from "../Components/Navbar/Navbar";
-import cyber from "../Components/Assets/cyber-security.jpg";
 import { AuthContext } from "../Context/AuthContext";
 import { Navigate } from "react-router-dom";
+import { HomeComponent } from "../Components/HomeComponent/HomeComponent";
 
 export const Homepage = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -11,7 +11,7 @@ export const Homepage = () => {
     <div>
       {isLoggedIn ? "" : <Navigate to="/" />}
       <Navbar />
-      <img src={cyber} alt="" />
+      <HomeComponent />
     </div>
   );
 };

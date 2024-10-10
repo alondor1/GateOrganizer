@@ -25,6 +25,20 @@
   background-color: rgba(0, 0, 0, 0.226);
 }
 
-.LoginBox span {
-  color: red;
+@media (max-width: 768px) {
+  .LoginBox {
+    font-size: 1.5rem; /* Larger title font size */
+    margin-top: -300px;
+    margin-left: -125px;
+  }
+  .login {
+    font-size: 15px;
+    height: 40px;
+    width: 60px;
+    border-radius: 20px;
+  }
+  .logintext {
+    font-size: 1.1rem;
+    padding: 5px;
+  }
 }

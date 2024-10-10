@@ -40,7 +40,7 @@ export const LoginBox = () => {
       toast.success("Login successful!");
       const timer = setTimeout(() => {
         setRedirect(true); // Set redirect to true after 2 seconds
-      }, 2000); // Adjust the duration as needed
+      }, 1000); // Adjust the duration as needed
 
       return () => clearTimeout(timer); // Cleanup the timer on component unmount
     }
@@ -78,6 +78,7 @@ export const LoginBox = () => {
         <br />
         <input type="submit" value="Log In" className="login" />
       </form>
+      <button>forgot password? click here</button>
       <ToastContainer
         position={"top-center"}
         closeOnClick={true}

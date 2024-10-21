@@ -95,45 +95,54 @@ export const LoginBox = () => {
   }
 
   return (
-    <div className="LoginBox">
-      <img src={loginimg} alt="" />
-      {!ForgotPasswordState ? (
-        <form onSubmit={handleLogin}>
-          <h2>Login</h2>
-          <input
-            type="text"
-            placeholder="Email....."
-            required
-            className="logintext"
-            onChange={(e) =>
-              setLoginData({ ...loginData, email: e.target.value })
-            }
-          />
-          <br />
-          <br />
-          <input
-            type="password"
-            placeholder="Password...."
-            required
-            className="logintext"
-            onChange={(e) =>
-              setLoginData({ ...loginData, password: e.target.value })
-            }
-          />
-          <br />
-          <input type="submit" value="Log In" className="login" />
-          <br />
-          <button onClick={() => setForgotPasswordState(true)}>
-            forgot password?
-          </button>
-        </form>
-      ) : (
-        <div>
-          <ForgotPassword />
-          <br />
-          <button onClick={() => setForgotPasswordState(false)}>back</button>
+    <div>
+      <div className="center-wrapper">
+        <div className="LoginBox">
+          <img src={loginimg} alt="" />
+          <h1>GateOrganizer</h1>
+          {!ForgotPasswordState ? (
+            <form onSubmit={handleLogin}>
+              <input
+                type="text"
+                placeholder="Email....."
+                required
+                className="logintext"
+                onChange={(e) =>
+                  setLoginData({ ...loginData, email: e.target.value })
+                }
+              />
+              <br />
+              <br />
+              <input
+                type="password"
+                placeholder="Password...."
+                required
+                className="logintext"
+                onChange={(e) =>
+                  setLoginData({ ...loginData, password: e.target.value })
+                }
+              />
+              <br />
+              <input type="submit" value="Log In" className="login" />
+              <br />
+              <button
+                className="forgot-password"
+                onClick={() => setForgotPasswordState(true)}
+              >
+                forgot password?
+              </button>
+            </form>
+          ) : (
+            <div>
+              <ForgotPassword />
+              <br />
+              <button onClick={() => setForgotPasswordState(false)}>
+                back
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
       <ToastContainer
         position={"top-center"}
         closeOnClick={true}

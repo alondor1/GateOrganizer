@@ -1,44 +1,173 @@
+.center-wrapper {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100vh; /* Full viewport height */
+  background-color: #f5f5f5; /* Very light grey background for the entire page */
+}
+
 .LoginBox {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -100px;
-  background-color: rgb(154, 154, 154);
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center elements horizontally */
+  background-color: #b4b4b4; /* Light grey for the login box */
+  padding: 40px 30px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border-radius: 10px;
-  border-style: solid;
+  transition: all 0.3s ease;
+}
+
+.LoginBox:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.LoginBox img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.LoginBox h2 {
+  color: #333; /* Darker grey for better contrast */
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 .logintext {
-  border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width: 95%; /* Set to 95% for a very spacious look */
+  padding: 6px; /* Reduced padding for a thinner appearance */
+  margin: 10px 0; /* Maintain vertical spacing */
+  border-radius: 6px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light border for input fields */
+  background-color: #ffffff; /* White for inputs */
+  color: #333; /* Dark text for better readability */
+  font-size: 16px; /* Font size to keep text legible */
+  transition: all 0.3s ease;
+  text-align: left; /* Align text to the left */
+}
+
+.logintext:focus {
+  outline: none;
+  border-color: #888; /* Darker border on focus */
+  background-color: #f9f9f9; /* Very light grey on focus */
 }
 
 .login {
-  border-radius: 10px;
-  margin: 10px;
+  width: 80%; /* Reduced width for a more compact button */
+  padding: 10px; /* Slightly smaller padding */
+  background-color: #6c757d; /* Soft grey for a modern look */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 6px; /* Slightly less rounded corners */
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  font-size: 16px; /* Slightly smaller font size */
 }
 
 .login:hover {
-  background-color: rgba(0, 0, 0, 0.226);
+  background-color: #5a6268; /* Darker grey on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover for emphasis */
 }
 
+.forgot-password {
+  margin-top: 15px;
+  color: #555; /* Darker grey for the link */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #333; /* Darker color on hover */
+}
+
+button {
+  outline: none;
+}
+
+/* Forgot Password Form */
+.ForgotPasswordBox {
+  padding: 20px;
+  background-color: #e0e0e0; /* Light grey for forgot password box */
+  border-radius: 12px;
+  color: #333; /* Darker grey for text */
+}
+
+.ForgotPasswordBox input {
+  width: 100%; /* Full width */
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc; /* Light border for input fields */
+  background-color: #ffffff; /* White for inputs */
+  color: #333; /* Dark text for better readability */
+  font-size: 16px;
+  text-align: center; /* Center text and placeholder */
+}
+
+.ForgotPasswordBox button {
+  background-color: #d0d0d0; /* Light grey for the button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%; /* Full width */
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.ForgotPasswordBox button:hover {
+  background-color: #aaaaaa; /* Darker grey on hover */
+}
+
+.ForgotPasswordBox p {
+  color: #555; /* Darker grey for paragraph text */
+  margin-top: 15px;
+}
+
+.ForgotPasswordBox h2 {
+  color: #333; /* Darker grey for heading */
+  margin-bottom: 20px;
+}
+
+.ForgotPasswordBox .back {
+  color: #555; /* Darker grey for back link */
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+}
+
+.ForgotPasswordBox .back:hover {
+  color: #333; /* Darker color on hover */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .LoginBox {
-    font-size: 1.5rem; /* Larger title font size */
-    margin-top: -300px;
-    margin-left: -130px;
+    width: 90%;
+    padding: 20px;
   }
+
   .login {
-    font-size: 15px;
-    height: 40px;
-    width: 60px;
-    border-radius: 20px;
+    font-size: 16px;
   }
+
   .logintext {
-    font-size: 1.1rem;
-    padding: 5px;
+    font-size: 14px;
+  }
+
+  .ForgotPasswordBox button {
+    font-size: 16px;
+  }
+
+  .ForgotPasswordBox input {
+    font-size: 14px;
   }
 }

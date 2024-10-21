@@ -6,7 +6,8 @@ export const HomeComponent = () => {
   return (
     <div className="container">
       <h1 className="title">
-        Welcome to <img src={logo} alt="" />
+        Welcome to <br />
+        <img src={logo} alt="" />
         <br />
       </h1>
       <Link to="/EnterForm" className="link">

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Navbar } from "../Components/Navbar/Navbar";
-import { Form } from "../Components/Form/Form";
+import { QuickForm } from "../Components/Form/QuickForm";
 import { AuthContext } from "../Context/AuthContext";
 import { Navigate } from "react-router-dom";
 
@@ -15,7 +15,8 @@ export const EnterForm = () => {
         <Navigate to="/homepage" />
       )}
       <Navbar />
-      <Form />
+      <button>schedule manually</button>
+      <QuickForm />
     </div>
   );
 };

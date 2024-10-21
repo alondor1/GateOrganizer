@@ -9,7 +9,9 @@ import { EnterLog } from "./Pages/EnterLog";
 import { Homepage } from "./Pages/homepage";
 import { ContactUs } from "./Pages/ContactUs";
 import { SiteManager } from "./Pages/SiteManager";
+import { PWDpage } from "./Pages/PWDpage";
 import { AuthProvider } from "./Context/AuthContext";
+import { ContructorsPage } from "./Pages/ContructorsPage";
 
 const router = createHashRouter([
   {
@@ -55,6 +57,14 @@ const router = createHashRouter([
         <SiteManager />
       </AuthProvider>
     ),
+  },
+  {
+    path: "/password-reset/:token",
+    element: <PWDpage />,
+  },
+  {
+    path: "/contructors-page/:token",
+    element: <ContructorsPage />,
   },
 ]);
 

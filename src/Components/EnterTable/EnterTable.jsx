@@ -50,7 +50,7 @@ export const EnterTable = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axiosInstance.get(`/getEntrys`);
+      const res = await axiosInstance.get(`/entries`);
       setData(res.data);
       setRecords(res.data);
       toast.success("Data successfully refreshed!");
@@ -71,7 +71,7 @@ export const EnterTable = () => {
       newRecords[indexToUpdate].status = "in-site";
       setRecords(newRecords);
       try {
-        await axiosInstance.put(`/getEntrys/${id}`, {
+        await axiosInstance.put(`/entries/${id}`, {
           status: "in-site",
         });
         toast.success(`Successfully updated status to "in-site"`);
@@ -84,7 +84,7 @@ export const EnterTable = () => {
       newRecords[indexToUpdate].status = "left";
       setRecords(newRecords);
       try {
-        await axiosInstance.put(`/getEntrys/${id}`, {
+        await axiosInstance.put(`/entries/${id}`, {
           status: "left",
         });
         toast.success(`Successfully updated status to "left"`);
@@ -97,7 +97,7 @@ export const EnterTable = () => {
       newRecords.splice(indexToUpdate, 1);
       setRecords(newRecords);
       try {
-        await axiosInstance.delete(`/getEntrys/${id}`);
+        await axiosInstance.delete(`/entries/${id}`);
         toast.success(`Successfully removed record`);
       } catch (err) {
         newRecords.splice(indexToUpdate, 0, { ...originalRecord });

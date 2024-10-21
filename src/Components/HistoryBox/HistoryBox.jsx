@@ -58,7 +58,7 @@ export const HistoryBox = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axiosInstance.get(`/getHistory`);
+      const res = await axiosInstance.get(`/history`);
       setData(res.data);
       setRecords(res.data);
       toast.success("Data updated");

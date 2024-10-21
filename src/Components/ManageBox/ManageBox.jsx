@@ -18,7 +18,7 @@ export const ManageBox = () => {
 
   useEffect(() => {
     axiosInstance
-      .get("/getUsers")
+      .get("/users")
       .then((res) => {
         setData(res.data);
       })
@@ -63,7 +63,7 @@ export const ManageBox = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axiosInstance
-      .post("/getUsers", values)
+      .post("/users", values)
       .then((res) => {
         console.log(res);
         toast.success("user successfully registered");
@@ -81,7 +81,7 @@ export const ManageBox = () => {
     );
     if (confirm) {
       axiosInstance
-        .delete(`/getUsers/${id}`)
+        .delete(`/users/${id}`)
         .then((res) => {
           toast.success("user successfully deleted");
           const timer = setTimeout(() => {

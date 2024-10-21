@@ -28,12 +28,12 @@ export const Form = () => {
     setValues(updatedValues); // Update values state with current guests
 
     axiosInstance
-      .post("/getHistory", updatedValues)
+      .post("/history", updatedValues)
       .then((res) => {})
       .catch((err) => console.log(err));
 
     axiosInstance
-      .post("/getEntrys", updatedValues)
+      .post("/entries", updatedValues)
       .then((res) => {
         console.log(res);
         toast.success("A new schedule set successfully");
